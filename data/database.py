@@ -43,12 +43,13 @@ class Database:
         self.__check_meta(methodName)
 
     def fetch_data(self, filters=None):
-        self.__generic_function_checks("fetchData")
+        self.__generic_function_checks("fetch_data")
         query = helpers.generate_select_query(self.meta['table_name'], filters=filters)    
         self.cursor.execute(query)
         return self.cursor.fetchall()
     
     def insert_data(self, table_name, data):
+        self.__generic_function_checks("insert_data")
         insert_query = helpers.generate_insert_query(table_name, data)
         try:
             self.cursor.execute(insert_query)
